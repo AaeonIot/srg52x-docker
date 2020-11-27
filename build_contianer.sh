@@ -1,8 +1,14 @@
-#!/bin/bash -ex
+#!/bin/bash -e
 
 GID=$(id -g)
 USER_ID=$(id -u)
 SHELL=/bin/bash
+
+EXEC_QEMU=$(which qemu-arm-static)
+if [ ! -f qemu-arm-static ]; then
+  cp -vf ${EXEC_QEMU} .
+fi
+
 export USER_ID
 export SHELL
 export GID
