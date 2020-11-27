@@ -1,0 +1,22 @@
+version: "2.1"
+services:
+  srg52x-app-dev:
+    build:
+      context: .
+      args:
+        http_proxy: $http_proxy
+        USER_ID: ${USER_ID:-1000}
+        WORK_DIR: ${WORK_DIR:-work}
+    image: srg52x-app-dev
+    environment:
+      http_proxy: $http_proxy
+      https_proxy: $https_proxy
+      no_proxy: $no_proxy
+      VERBOSE: ${VERBOSE:-0}
+      WORK_DIR: ${WORK_DIR:-work}
+    volumes:
+      - ./works:/home/aaeon/work
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    cap_add:
+      - NET_ADMIN
